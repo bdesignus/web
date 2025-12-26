@@ -296,16 +296,6 @@
             transform: translateY(-3px);
         }
 
-        .scroll-indicator {
-            text-align: left;
-            margin-top: 4rem;
-            color: #666;
-            font-size: 0.8rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            animation: fadeInUp 0.8s ease-out 0.8s backwards;
-        }
-
         /* Section Styles */
         section {
             padding: 7rem 3rem;
@@ -399,9 +389,10 @@
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2.5rem;
             margin-bottom: 3rem;
+            justify-items: center;
         }
 
         .project-card {
@@ -409,35 +400,19 @@
             border-radius: 15px;
             overflow: hidden;
             border: 1px solid rgba(255, 145, 0, 0.1);
-            transition: all 0.4s ease;
+            transition: transform 0.4s ease;
             position: relative;
-        }
-
-        .project-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255, 145, 0, 0.2) 0%, transparent 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
+            width: 100%;
+            max-width: 350px;
         }
 
         .project-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: rgba(255, 145, 0, 0.5);
-            box-shadow: 0 20px 60px rgba(255, 145, 0, 0.3);
-        }
-
-        .project-card:hover::after {
-            opacity: 1;
+            transform: translateY(-10px);
         }
 
         .project-image {
             width: 100%;
-            aspect-ratio: 16 / 9;
+            aspect-ratio: 9 / 16;
             position: relative;
             background: #000;
             display: flex;
@@ -447,94 +422,9 @@
         }
 
         .project-image video {
-            max-width: 100%;
-            max-height: 100%;
-            width: auto;
-            height: auto;
-            object-fit: contain;
-        }
-
-        .video-controls {
-            position: absolute;
-            bottom: 15px;
-            right: 15px;
-            z-index: 10;
-        }
-
-        .unmute-btn {
-            background: rgba(255, 145, 0, 0.9);
-            border: none;
-            color: white;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .unmute-btn:hover {
-            background: rgba(255, 145, 0, 1);
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(255, 145, 0, 0.4);
-        }
-
-        .play-pause-btn {
-            background: rgba(255, 145, 0, 0.9);
-            border: none;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .project-image:hover .play-pause-btn {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .play-pause-btn:hover {
-            background: rgba(255, 145, 0, 1);
-            transform: translate(-50%, -50%) scale(1.1);
-            box-shadow: 0 6px 20px rgba(255, 145, 0, 0.4);
-        }
-
-        .play-pause-btn.playing {
-            opacity: 0;
-        }
-
-        .project-image:hover .play-pause-btn.playing {
-            opacity: 0.8;
-        }
-
-        .project-info {
-            padding: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .project-info h3 {
-            color: #ffffff;
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-            font-family: 'Playfair Display', serif;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .instagram-link {
@@ -624,19 +514,6 @@
             color: #ffffff;
             margin-bottom: 0.5rem;
             font-family: 'Playfair Display', serif;
-        }
-
-        .area-card p {
-            color: #a0a0a0;
-        }
-
-        .service-description {
-            text-align: center;
-            max-width: 900px;
-            margin: 4rem auto 0;
-            color: #a0a0a0;
-            line-height: 1.9;
-            font-size: 1.1rem;
         }
 
         /* Contact Section */
@@ -821,13 +698,6 @@
                             <source src="videoexample1.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
-                        <button class="play-pause-btn" onclick="togglePlayPause('video1', this)">▶</button>
-                        <div class="video-controls">
-                            <button class="unmute-btn" onclick="toggleMute('video1', this)">🔇</button>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Modern Living Room Transformation</h3>
                     </div>
                 </div>
                 <div class="project-card">
@@ -836,13 +706,6 @@
                             <source src="YOUR_VIDEO_URL_2.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
-                        <button class="play-pause-btn" onclick="togglePlayPause('video2', this)">▶</button>
-                        <div class="video-controls">
-                            <button class="unmute-btn" onclick="toggleMute('video2', this)">🔇</button>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Luxurious Master Bedroom</h3>
                     </div>
                 </div>
                 <div class="project-card">
@@ -851,13 +714,6 @@
                             <source src="YOUR_VIDEO_URL_3.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
-                        <button class="play-pause-btn" onclick="togglePlayPause('video3', this)">▶</button>
-                        <div class="video-controls">
-                            <button class="unmute-btn" onclick="toggleMute('video3', this)">🔇</button>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Contemporary Kitchen Styling</h3>
                     </div>
                 </div>
             </div>
@@ -965,32 +821,6 @@
     </footer>
 
     <script>
-        // Toggle play/pause
-        function togglePlayPause(videoId, button) {
-            const video = document.getElementById(videoId);
-            if (video.paused) {
-                video.play();
-                button.textContent = '⏸';
-                button.classList.add('playing');
-            } else {
-                video.pause();
-                button.textContent = '▶';
-                button.classList.remove('playing');
-            }
-        }
-
-        // Toggle mute/unmute
-        function toggleMute(videoId, button) {
-            const video = document.getElementById(videoId);
-            if (video.muted) {
-                video.muted = false;
-                button.textContent = '🔊';
-            } else {
-                video.muted = true;
-                button.textContent = '🔇';
-            }
-        }
-
         // Auto-mute all videos on load
         window.addEventListener('load', function() {
             document.querySelectorAll('video').forEach(video => {
@@ -1017,22 +847,4 @@
         const observer = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.animationPlayState = 'running';
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        // Observe all cards
-        document.querySelectorAll('.service-card, .project-card, .feature-card, .area-card').forEach((el, index) => {
-            el.style.animation = `fadeInUp 0.8s ease-out ${index * 0.1}s both paused`;
-            observer.observe(el);
-        });
-    </script>
-</body>
-
-</html>
-
-
-
-
+                    entry.target.
