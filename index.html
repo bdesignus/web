@@ -234,6 +234,10 @@
             color: #ff9100;
         }
 
+        .hero h1 .ampersand {
+            color: #2c3e50;
+        }
+
         .hero p {
             font-size: 1.1rem;
             color: #a0a0a0;
@@ -614,6 +618,7 @@
             .hero {
                 min-height: 100vh;
                 padding: 2rem 0;
+                margin-top: 60px;
             }
 
             .hero-content {
@@ -623,6 +628,7 @@
             .hero-subtitle {
                 font-size: 0.8rem;
                 letter-spacing: 2px;
+                margin-bottom: 1rem;
             }
 
             .hero h1 {
@@ -753,7 +759,7 @@
     <section class="hero" id="about">
         <div class="hero-content">
             <div class="hero-subtitle">PREMIER HOME DECOR</div>
-            <h1>Elevated Home Décor & <span class="highlight">Interior Styling</span></h1>
+            <h1>Elevated Home Décor <span class="ampersand">&</span> <span class="highlight">Interior Styling</span></h1>
             <div class="location-badge">📍 Based in Houston, Texas</div>
             <p>We create beautiful, personalized spaces for residential and commercial clients across Texas. Specializing in custom TV wall designs, statement accent walls, and complete room transformations—we handle every detail to bring your vision to life.</p>
             <div class="hero-buttons">
@@ -806,7 +812,7 @@
                 <div class="project-card">
                     <div class="project-image">
                         <video id="video2" loop playsinline muted autoplay>
-                            <source src="videoexample2.mp4" type="video/mp4">
+                            <source src="YOUR_VIDEO_URL_2.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     </div>
@@ -814,7 +820,7 @@
                 <div class="project-card">
                     <div class="project-image">
                         <video id="video3" loop playsinline muted autoplay>
-                            <source src="videoexample3.mp4" type="video/mp4">
+                            <source src="YOUR_VIDEO_URL_3.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     </div>
@@ -951,4 +957,3 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.
-
