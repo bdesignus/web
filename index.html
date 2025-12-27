@@ -182,6 +182,118 @@
             animation: glow 2s infinite;
         }
 
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1001;
+        }
+
+        .mobile-menu-toggle span {
+            width: 28px;
+            height: 3px;
+            background: #ff9100;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: #0a0e1a;
+            z-index: 1000;
+            transition: left 0.3s ease;
+            padding: 5rem 2rem 2rem;
+            overflow-y: auto;
+            box-shadow: 5px 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mobile-menu ul li {
+            margin-bottom: 2rem;
+        }
+
+        .mobile-menu ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            display: block;
+        }
+
+        .mobile-menu ul li a:hover {
+            color: #ff9100;
+        }
+
+        .mobile-menu-cta {
+            margin-top: 2rem;
+        }
+
+        .mobile-menu-cta a {
+            display: block;
+            background: #ff9100;
+            color: #0a0e1a;
+            padding: 1rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-cta a:hover {
+            background: #ff7700;
+        }
+
         /* Hero Section */
         .hero {
             margin-top: 80px;
@@ -606,6 +718,14 @@
                 display: none;
             }
 
+            .cta-button {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
             .nav-container {
                 padding: 0 1.5rem;
             }
@@ -752,8 +872,31 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <a href="#contact" class="cta-button">Request a Quote</a>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="#about" class="mobile-menu-link">About</a></li>
+            <li><a href="#services" class="mobile-menu-link">Services</a></li>
+            <li><a href="#projects" class="mobile-menu-link">Projects</a></li>
+            <li><a href="#why-us" class="mobile-menu-link">Why Us</a></li>
+            <li><a href="#service-areas" class="mobile-menu-link">Service Areas</a></li>
+            <li><a href="#contact" class="mobile-menu-link">Contact</a></li>
+        </ul>
+        <div class="mobile-menu-cta">
+            <a href="#contact" class="mobile-menu-link">Request a Quote</a>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero" id="about">
@@ -812,7 +955,7 @@
                 <div class="project-card">
                     <div class="project-image">
                         <video id="video2" loop playsinline muted autoplay>
-                            <source src="videoexample2.mp4" type="video/mp4">
+                            <source src="YOUR_VIDEO_URL_2.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     </div>
@@ -820,7 +963,7 @@
                 <div class="project-card">
                     <div class="project-image">
                         <video id="video3" loop playsinline muted autoplay>
-                            <source src="videoexample3.mp4" type="video/mp4">
+                            <source src="YOUR_VIDEO_URL_3.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     </div>
@@ -930,6 +1073,26 @@
     </footer>
 
     <script>
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+        function toggleMobileMenu() {
+            mobileMenuToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            mobileMenuOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+        mobileMenuOverlay.addEventListener('click', toggleMobileMenu);
+
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', toggleMobileMenu);
+        });
+
         // Auto-mute all videos on load
         window.addEventListener('load', function() {
             document.querySelectorAll('video').forEach(video => {
@@ -957,4 +1120,3 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.
-
