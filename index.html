@@ -331,20 +331,113 @@
             animation: fadeIn 2s ease-out;
         }
 
-        .hero-content {
+        .hero-container {
             max-width: 1400px;
             margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
             padding: 0 3rem;
+        }
+
+        .hero-content {
             z-index: 1;
         }
 
+        .hero-images {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            z-index: 1;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 200px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 145, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .hero-image:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 145, 0, 0.5);
+            box-shadow: 0 10px 30px rgba(255, 145, 0, 0.3);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Mobile Slideshow */
+        .mobile-slideshow {
+            display: none;
+            width: 100%;
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .mobile-slideshow-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .mobile-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .mobile-slide.active {
+            opacity: 1;
+        }
+
+        .mobile-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slideshow-dots {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .slideshow-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slideshow-dot.active {
+            background: #ff9100;
+            width: 24px;
+            border-radius: 4px;
+        }
+
         .hero-subtitle {
-            color: #ff9100;
-            font-size: 0.95rem;
-            font-weight: 600;
-            letter-spacing: 4px;
-            margin-bottom: 1.5rem;
-            animation: fadeInUp 0.8s ease-out;
+            display: none;
         }
 
         .hero h1 {
@@ -362,7 +455,7 @@
         }
 
         .hero h1 .ampersand {
-            color: #2c3e50;
+            color: #ff9100;
         }
 
         .hero p {
@@ -761,14 +854,29 @@
                 margin-top: 60px;
             }
 
-            .hero-content {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
                 padding: 0 1.5rem;
+            }
+
+            .hero-images {
+                display: none;
+            }
+
+            .mobile-slideshow {
+                display: block;
+            }
+
+            .hero-content {
+                padding: 0;
             }
 
             .hero-subtitle {
                 font-size: 0.8rem;
                 letter-spacing: 2px;
                 margin-bottom: 1rem;
+                display: none;
             }
 
             .hero h1 {
@@ -920,14 +1028,54 @@
 
     <!-- Hero Section -->
     <section class="hero" id="about">
-        <div class="hero-content">
-            <div class="hero-subtitle">PREMIER HOME DECOR</div>
-            <h1>Elevated Home Décor <span class="ampersand">&</span> <span class="highlight">Interior Styling</span></h1>
-            <div class="location-badge">📍 Based in Houston, Texas</div>
-            <p>We create beautiful, personalized spaces for residential and commercial clients across Texas. Specializing in custom TV wall designs, statement accent walls, and complete room transformations—we handle every detail to bring your vision to life.</p>
-            <div class="hero-buttons">
-                <a href="#contact" class="btn-primary">Get in Touch</a>
-                <a href="#projects" class="btn-secondary">View Our Work</a>
+        <div class="hero-container">
+            <div class="hero-content">
+                <!-- Mobile Slideshow (shown only on mobile) -->
+                <div class="mobile-slideshow">
+                    <div class="mobile-slideshow-inner">
+                        <div class="mobile-slide active">
+                            <img src="mobile-slide-1.jpg" alt="Project Showcase 1">
+                        </div>
+                        <div class="mobile-slide">
+                            <img src="mobile-slide-2.jpg" alt="Project Showcase 2">
+                        </div>
+                        <div class="mobile-slide">
+                            <img src="mobile-slide-3.jpg" alt="Project Showcase 3">
+                        </div>
+                        <div class="mobile-slide">
+                            <img src="mobile-slide-4.jpg" alt="Project Showcase 4">
+                        </div>
+                    </div>
+                    <div class="slideshow-dots">
+                        <span class="slideshow-dot active" data-slide="0"></span>
+                        <span class="slideshow-dot" data-slide="1"></span>
+                        <span class="slideshow-dot" data-slide="2"></span>
+                        <span class="slideshow-dot" data-slide="3"></span>
+                    </div>
+                </div>
+
+                <div class="hero-subtitle">PREMIER HOME DECOR</div>
+                <h1>Elevated Home Décor <span class="ampersand">&</span> <span class="highlight">Interior Styling</span></h1>
+                <div class="location-badge">📍 Based in Houston, Texas</div>
+                <p>We create beautiful, personalized spaces for residential and commercial clients across Texas. Specializing in custom TV wall designs, statement accent walls, and complete room transformations—we handle every detail to bring your vision to life.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn-primary">Get in Touch</a>
+                    <a href="#projects" class="btn-secondary">View Our Work</a>
+                </div>
+            </div>
+            <div class="hero-images">
+                <div class="hero-image">
+                    <img src="desktop-project-1.jpg" alt="Design Project 1">
+                </div>
+                <div class="hero-image">
+                    <img src="desktop-project-2.jpg" alt="Design Project 2">
+                </div>
+                <div class="hero-image">
+                    <img src="desktop-project-3.jpg" alt="Design Project 3">
+                </div>
+                <div class="hero-image">
+                    <img src="desktop-project-4.jpg" alt="Design Project 4">
+                </div>
             </div>
         </div>
     </section>
@@ -975,7 +1123,7 @@
                 <div class="project-card">
                     <div class="project-image">
                         <video id="video2" loop playsinline muted autoplay>
-                            <source src="YOUR_VIDEO_URL_2.mp4" type="video/mp4">
+                            <source src="videoexample2.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     </div>
@@ -983,7 +1131,7 @@
                 <div class="project-card">
                     <div class="project-image">
                         <video id="video3" loop playsinline muted autoplay>
-                            <source src="YOUR_VIDEO_URL_3.mp4" type="video/mp4">
+                            <source src="videoexample3.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     </div>
@@ -1093,6 +1241,50 @@
     </footer>
 
     <script>
+        // Mobile Slideshow
+        (function() {
+            const slides = document.querySelectorAll('.mobile-slide');
+            const dots = document.querySelectorAll('.slideshow-dot');
+            let currentSlide = 0;
+            let slideInterval;
+
+            function showSlide(n) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                currentSlide = (n + slides.length) % slides.length;
+                
+                slides[currentSlide].classList.add('active');
+                dots[currentSlide].classList.add('active');
+            }
+
+            function nextSlide() {
+                showSlide(currentSlide + 1);
+            }
+
+            function startSlideshow() {
+                slideInterval = setInterval(nextSlide, 3000);
+            }
+
+            function stopSlideshow() {
+                clearInterval(slideInterval);
+            }
+
+            // Dot click handlers
+            dots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    stopSlideshow();
+                    showSlide(parseInt(this.getAttribute('data-slide')));
+                    startSlideshow();
+                });
+            });
+
+            // Start slideshow
+            if (slides.length > 0) {
+                startSlideshow();
+            }
+        })();
+
         // Mobile Menu Toggle - Simple and Direct
         (function() {
             const toggle = document.getElementById('mobileMenuToggle');
